@@ -28,7 +28,7 @@ public class TabletopModelProvider extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         uploadToken(itemModelGenerator);
-        uploadPack(itemModelGenerator);
+//        uploadPack(itemModelGenerator);
     }
 
     private void uploadToken(ItemModelGenerator generator) {
@@ -38,7 +38,7 @@ public class TabletopModelProvider extends FabricModelProvider {
         List<SelectItemModel.SwitchCase<TokenType>> inputModels = new ArrayList<>();
 
         for (TokenType type : TabletopRegistries.TOKEN_TYPE) {
-            Identifier tokenId = id.withPath(s -> "token/" + type.name().toLowerCase());
+            Identifier tokenId = id.withPath(s -> s + "_" + type.name().toLowerCase());
 
             inputModels.add(
                     ItemModels.switchCase(
