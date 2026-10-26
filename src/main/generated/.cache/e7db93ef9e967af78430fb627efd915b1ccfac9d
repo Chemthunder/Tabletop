@@ -1,0 +1,9 @@
+// 1.21.11	-999999999-01-01T00:00:00	Tabletop/Model Definitions
+93a089c67fce98e8264aad41964b2261f5cda393 assets/tabletop/items/token.json
+a8b60842d035258312211f0642cb74242ec599de assets/tabletop/models/item/token_blank.json
+68b4fd8b344ca06d92d8e621f2d87307a2750a21 assets/tabletop/models/item/token_creeper.json
+fb797064240cd50c354827ff0e84170f95f06ba7 assets/tabletop/models/item/token_pig.json
+dd6f2fa67ea5890f295e7ce02190050d3fc628e8 assets/tabletop/models/item/token_plains.json
+ba0e3a1327c25948f30dd9090a1dbaf784eca67e assets/tabletop/models/item/token_skeleton.json
+15aa90445f7791a42b6e62a88e2c8ab39b778285 assets/tabletop/models/item/token_the_king.json
+bae6ad4b2480c3b599dbab59a667ee8aa64d1bce assets/tabletop/models/item/token_zombie.json

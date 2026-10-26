@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "tabletop",
+	"version": "${version}",
+	"name": "Tabletop",
+	"description": "Adds helpful utilities related to games!",
+	"authors": [
+		"Chemthunder",
+		"PhantomPickle_",
+		"Ticking_clock"
+	],
+	"license": "ARR",
+	"icon": "assets/tabletop/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"gay.chemthunder.tabletop.core.Tabletop"
+		],
+		"client": [
+			"gay.chemthunder.tabletop.core.TabletopClient"
+		],
+		"fabric-datagen": [
+			"gay.chemthunder.tabletop.datagen.TabletopDataGenerator"
+		]
+	},
+	"mixins": [
+		"tabletop.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
