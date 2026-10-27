@@ -1,8 +1,11 @@
 package gay.chemthunder.tabletop.datagen.providers.client;
 
 import gay.chemthunder.tabletop.api.CardPack;
+import gay.chemthunder.tabletop.api.token.TokenCategory;
 import gay.chemthunder.tabletop.api.token.TokenType;
+import gay.chemthunder.tabletop.core.client.item.HasChipProperty;
 import gay.chemthunder.tabletop.core.client.item.PackProperty;
+import gay.chemthunder.tabletop.core.client.item.TokenChipProperty;
 import gay.chemthunder.tabletop.core.client.item.TokenProperty;
 import gay.chemthunder.tabletop.core.index.TabletopItems;
 import gay.chemthunder.tabletop.core.index.TabletopRegistries;
@@ -35,12 +38,35 @@ public class TabletopModelProvider extends FabricModelProvider {
         Item item = TabletopItems.TOKEN;
         Identifier id = ModelIds.getItemModelId(item);
 
-        List<SelectItemModel.SwitchCase<TokenType>> inputModels = new ArrayList<>();
+        List<SelectItemModel.SwitchCase<TokenType>> chipModels = new ArrayList<>();
+        List<SelectItemModel.SwitchCase<TokenType>> baseModels = new ArrayList<>();
 
         for (TokenType type : TabletopRegistries.TOKEN_TYPE) {
             Identifier tokenId = id.withPath(s -> s + "_" + type.name().toLowerCase());
 
-            inputModels.add(
+            for (TokenType chip : TabletopRegistries.TOKEN_TYPE) {
+                if (chip.category().equals(TokenCategory.CHIP)) {
+                    Identifier chipId = id.withPath(s -> s + "_" + chip.name() + "_overlay");
+
+                    chipModels.add(
+                            ItemModels.switchCase(
+                                    chip,
+                                    ItemModels.basic(
+                                            Models.GENERATED_TWO_LAYERS.upload(
+                                                    tokenId.withPath(s -> s + "_" + chip.name()),
+                                                    TextureMap.layered(
+                                                            tokenId,
+                                                            chipId
+                                                    ),
+                                                    generator.modelCollector
+                                            )
+                                    )
+                            )
+                    );
+                }
+            }
+
+            baseModels.add(
                     ItemModels.switchCase(
                             type,
                             ItemModels.basic(
@@ -55,9 +81,16 @@ public class TabletopModelProvider extends FabricModelProvider {
         }
 
         generator.output.accept(item,
-                ItemModels.select(
-                        new TokenProperty(),
-                        inputModels
+                ItemModels.condition(
+                        new HasChipProperty(),
+                        ItemModels.select(
+                                new TokenChipProperty(),
+                                chipModels
+                        ),
+                        ItemModels.select(
+                                new TokenProperty(),
+                                baseModels
+                        )
                 )
         );
     }

@@ -1,10 +1,11 @@
 // 1.21.11	-999999999-01-01T00:00:00	Tabletop/Model Definitions
 8a3c3f2e293ed0da73bc0ea5357b5d7bf630c676 assets/tabletop/items/card_pack.json
-8ebbf2be1415b0bb19cc98e3dc65f1b2fb58b3b1 assets/tabletop/items/token.json
+bc36dda828d499c7e96375ebf13a7fbb5b7d0bee assets/tabletop/items/token.json
 5d8b0eec9167ba756cee7bc52e0fb1b5e2bb4228 assets/tabletop/models/item/card_pack_creeping.json
 5a2cc345be3d15dd6238c5ef302badbebae14db6 assets/tabletop/models/item/card_pack_village.json
 a8b60842d035258312211f0642cb74242ec599de assets/tabletop/models/item/token_blank.json
 68b4fd8b344ca06d92d8e621f2d87307a2750a21 assets/tabletop/models/item/token_creeper.json
+54a8668ae625c74275abf6cb7ccbb60b3479e7f6 assets/tabletop/models/item/token_frog.json
 fbf0934a73f8dcd1ee9bac7216fa43a9c69041d3 assets/tabletop/models/item/token_iron_golem.json
 fb797064240cd50c354827ff0e84170f95f06ba7 assets/tabletop/models/item/token_pig.json
 dd6f2fa67ea5890f295e7ce02190050d3fc628e8 assets/tabletop/models/item/token_plains.json

@@ -1,18 +1,23 @@
 package gay.chemthunder.tabletop.core.index;
 
 import gay.chemthunder.tabletop.api.CardPack;
+import gay.chemthunder.tabletop.api.token.TokenModifier;
 import gay.chemthunder.tabletop.api.token.TokenType;
 import gay.chemthunder.tabletop.core.Tabletop;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.stat.Stats;
 
 /**
  * @author Chemthunder
  */
 public interface TabletopRegistries {
+    RegistryKey<Registry<TokenModifier>> MODIFIER_KEY = RegistryKey.ofRegistry(Tabletop.id("token_modifier"));
+    Registry<TokenModifier> MODIFIER = FabricRegistryBuilder.createSimple(MODIFIER_KEY)
+            .attribute(RegistryAttribute.MODDED)
+            .buildAndRegister();
+
     RegistryKey<Registry<TokenType>> TYPE_KEY = RegistryKey.ofRegistry(Tabletop.id("token_type"));
     Registry<TokenType> TOKEN_TYPE = FabricRegistryBuilder.createSimple(TYPE_KEY)
             .attribute(RegistryAttribute.MODDED)

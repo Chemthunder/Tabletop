@@ -1,9 +1,10 @@
 package gay.chemthunder.tabletop.core.item;
 
+import gay.chemthunder.tabletop.api.token.TokenCategory;
 import gay.chemthunder.tabletop.api.token.TokenType;
 import gay.chemthunder.tabletop.core.client.screen.TokenScreen;
 import gay.chemthunder.tabletop.core.index.TabletopComponentTypes;
-import gay.chemthunder.tabletop.core.index.TabletopTokenTypes;
+import gay.chemthunder.tabletop.core.index.token.TokenTypes;
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.client.MinecraftClient;
@@ -31,12 +32,42 @@ public class TokenItem extends Item {
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         if (clickType == ClickType.RIGHT) {
             if (stack.contains(TabletopComponentTypes.TOKEN_TYPE)) {
-                if (stack.get(TabletopComponentTypes.TOKEN_TYPE) != TabletopTokenTypes.BLANK) {
-                    if (player.getEntityWorld().isClient()) {
-                        player.playSound(SoundEvents.ITEM_BOOK_PAGE_TURN);
-                        MinecraftClient.getInstance().setScreen(new TokenScreen(stack));
+                TokenType type = stack.get(TabletopComponentTypes.TOKEN_TYPE);
+
+                if (MinecraftClient.getInstance().isAltPressed()) {
+                    if (otherStack.isEmpty()) { // lead into wiki
+                        if (type != TokenTypes.BLANK) {
+                            if (player.getEntityWorld().isClient()) {
+                                player.playSound(SoundEvents.ITEM_BOOK_PAGE_TURN);
+                                MinecraftClient.getInstance().setScreen(new TokenScreen(stack));
+                            }
+                            return true;
+                        }
                     }
-                    return true;
+                } else {
+                    if (!otherStack.isEmpty()) {
+                        if (otherStack.contains(TabletopComponentTypes.TOKEN_TYPE)) {
+                            TokenType otherType = otherStack.get(TabletopComponentTypes.TOKEN_TYPE);
+
+                            if (otherType != null) {
+                                if (otherType.category().equals(TokenCategory.CHIP)) {
+                                    ItemStack split = otherStack.split(1);
+                                    stack.set(TabletopComponentTypes.HELD_CHIP, split);
+                                    return true;
+                                }
+                            }
+                        }
+                    } else {
+                        if (stack.contains(TabletopComponentTypes.HELD_CHIP)) {
+                            ItemStack chipStack = stack.get(TabletopComponentTypes.HELD_CHIP);
+
+                            if (chipStack != null) {
+                                cursorStackReference.set(chipStack);
+                                stack.remove(TabletopComponentTypes.HELD_CHIP);
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -56,7 +87,7 @@ public class TokenItem extends Item {
 
     public ItemStack getDefaultStack() {
         ItemStack original = super.getDefaultStack();
-        original.set(TabletopComponentTypes.TOKEN_TYPE, TabletopTokenTypes.BLANK);
+        original.set(TabletopComponentTypes.TOKEN_TYPE, TokenTypes.BLANK);
         return original;
     }
 

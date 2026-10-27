@@ -5,6 +5,7 @@ import gay.chemthunder.tabletop.api.token.TokenType;
 import gay.chemthunder.tabletop.core.Tabletop;
 import net.acoyt.acornlib.api.registrants.DataComponentTypeRegistrant;
 import net.minecraft.component.ComponentType;
+import net.minecraft.item.ItemStack;
 
 /**
  * @author Chemthunder
@@ -22,6 +23,12 @@ public interface TabletopComponentTypes {
             "card_pack",
             CardPack.CODEC,
             CardPack.PACKET_CODEC
+    );
+
+    ComponentType<ItemStack> HELD_CHIP = plugin.register(
+            "held_chip",
+            ItemStack.CODEC,
+            ItemStack.PACKET_CODEC
     );
 
     static void init() {}

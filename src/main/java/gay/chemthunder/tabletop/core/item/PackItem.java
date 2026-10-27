@@ -46,6 +46,8 @@ public class PackItem extends Item {
 
             user.incrementStat(TabletopStatTypes.PACKS_OPENED.getOrCreateStat(TabletopItems.CARD_PACK));
             user.spawnItemParticles(stack, 6);
+            user.swingHand(hand);
+            stack.splitUnlessCreative(1, user);
         }
         return super.use(world, user, hand);
     }

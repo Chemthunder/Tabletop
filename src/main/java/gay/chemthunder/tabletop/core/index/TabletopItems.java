@@ -1,7 +1,9 @@
 package gay.chemthunder.tabletop.core.index;
 
+import gay.chemthunder.tabletop.api.CardPack;
 import gay.chemthunder.tabletop.api.token.TokenType;
 import gay.chemthunder.tabletop.core.Tabletop;
+import gay.chemthunder.tabletop.core.index.token.TokenTypes;
 import gay.chemthunder.tabletop.core.item.PackItem;
 import gay.chemthunder.tabletop.core.item.TokenItem;
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
@@ -17,7 +19,7 @@ public interface TabletopItems {
     ItemRegistrant plugin = new ItemRegistrant(Tabletop.MOD_ID);
 
     Item TOKEN = plugin.register("token", TokenItem::new, new Item.Settings()
-            .component(TabletopComponentTypes.TOKEN_TYPE, TabletopTokenTypes.BLANK)
+            .component(TabletopComponentTypes.TOKEN_TYPE, TokenTypes.BLANK)
     );
 
     Item CARD_PACK = plugin.register("card_pack", PackItem::new, new Item.Settings()
@@ -29,6 +31,12 @@ public interface TabletopItems {
             for (TokenType type : TabletopRegistries.TOKEN_TYPE) {
                 ItemStack stack = new ItemStack(TOKEN);
                 stack.set(TabletopComponentTypes.TOKEN_TYPE, type);
+                entries.add(stack);
+            }
+
+            for (CardPack type : TabletopRegistries.PACK) {
+                ItemStack stack = new ItemStack(CARD_PACK);
+                stack.set(TabletopComponentTypes.CARD_PACK, type);
                 entries.add(stack);
             }
         });

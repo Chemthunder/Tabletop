@@ -1,6 +1,8 @@
 package gay.chemthunder.tabletop.core;
 
 import gay.chemthunder.tabletop.core.index.*;
+import gay.chemthunder.tabletop.core.index.token.TokenModifiers;
+import gay.chemthunder.tabletop.core.index.token.TokenTypes;
 import gay.chemthunder.tabletop.core.item.PackItem;
 import gay.chemthunder.tabletop.core.item.TokenItem;
 import gay.chemthunder.tabletop.core.networking.TabletopNetworking;
@@ -22,8 +24,10 @@ public class Tabletop implements ModInitializer {
 		TabletopRegistries.init();
 		TabletopComponentTypes.init();
 		TabletopStatTypes.init();
-		TabletopTokenTypes.init();
 		TabletopCardPacks.init();
+
+		TokenModifiers.init();
+		TokenTypes.init();
 
 		TabletopNetworking.register();
 

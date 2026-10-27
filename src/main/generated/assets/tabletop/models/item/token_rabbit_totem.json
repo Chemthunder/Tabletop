@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tabletop:item/token_rabbit",
+    "layer1": "tabletop:item/token_totem_overlay"
+  }
+}

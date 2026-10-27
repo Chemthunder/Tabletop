@@ -3,6 +3,7 @@ package gay.chemthunder.tabletop.core.client.screen;
 import gay.chemthunder.tabletop.api.token.TokenType;
 import gay.chemthunder.tabletop.core.Tabletop;
 import gay.chemthunder.tabletop.core.index.TabletopComponentTypes;
+import gay.chemthunder.tabletop.core.index.token.TokenModifiers;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
@@ -32,7 +33,6 @@ public class TokenScreen extends Screen {
 
     private float scale = 0.0F;
 
-    private int ticksActive = 0;
     private int maxPages = 3;
     private int page = 0;
 
@@ -48,7 +48,7 @@ public class TokenScreen extends Screen {
 
             if (type != null) {
                 // TODO: adjust max pages on initialize
-                maxPages = 2;
+                maxPages = type.has(TokenModifiers.HAS_ABILITY) ? 3 : 2;
             }
         }
 
@@ -74,8 +74,6 @@ public class TokenScreen extends Screen {
     }
 
     public void tick() {
-        this.ticksActive++;
-
         if (this.scale < 1.0F) {
             this.scale += 0.05F;
         }
@@ -263,6 +261,48 @@ public class TokenScreen extends Screen {
         }
     }
 
+    private void drawPageThree(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
+        if (stack.contains(TabletopComponentTypes.TOKEN_TYPE)) {
+            TokenType type = stack.get(TabletopComponentTypes.TOKEN_TYPE);
+
+            if (type != null) {
+                context.fill(
+                        (width - (width / 2)) - (112 - 45),
+                        0,
+                        (width - (width / 2)) + (112 - 45),
+                        height,
+                        ColorHelper.withAlpha(0.4F, 0xFF000000)
+                );
+
+                context.drawGuiTexture(
+                        RenderPipelines.GUI_TEXTURED,
+                        Tabletop.id("empty_board"),
+                        (width / 2) - (112 / 2),
+                        height / 2 - (112 / 2),
+                        112,
+                        112
+                );
+
+                context.drawGuiTexture(
+                        RenderPipelines.GUI_TEXTURED,
+                        Tabletop.id("token/" + type.name() + "_ability"),
+                        (width / 2) - (112 / 2),
+                        height / 2 - (112 / 2),
+                        112,
+                        112
+                );
+
+                context.drawCenteredTextWithShadow(
+                        client.textRenderer,
+                        Text.literal("Ability"),
+                        width - (width / 2),
+                        (height / 2 - (112 / 2)) - 20,
+                        0xFFffffff
+                );
+            }
+        }
+    }
+
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         switch (page) {
             case 0: {
@@ -271,6 +311,10 @@ public class TokenScreen extends Screen {
             }
             case 1: {
                 drawPageTwo(context, mouseX, mouseY, deltaTicks);
+                break;
+            }
+            case 2: {
+                drawPageThree(context, mouseX, mouseY, deltaTicks);
                 break;
             }
         }

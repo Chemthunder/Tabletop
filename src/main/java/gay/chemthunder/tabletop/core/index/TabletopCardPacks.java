@@ -3,6 +3,7 @@ package gay.chemthunder.tabletop.core.index;
 import gay.chemthunder.tabletop.api.CardPack;
 import gay.chemthunder.tabletop.api.token.TokenType;
 import gay.chemthunder.tabletop.core.Tabletop;
+import gay.chemthunder.tabletop.core.index.token.TokenTypes;
 import net.minecraft.registry.Registry;
 
 import java.util.Arrays;
@@ -13,14 +14,14 @@ import java.util.Arrays;
 @SuppressWarnings("unused")
 public interface TabletopCardPacks {
     CardPack CREEPING = register("creeping", new TokenType[]{
-            TabletopTokenTypes.CREEPER,
-            TabletopTokenTypes.ZOMBIE,
-            TabletopTokenTypes.SKELETON
+            TokenTypes.CREEPER,
+            TokenTypes.ZOMBIE,
+            TokenTypes.SKELETON
     });
 
     CardPack VILLAGE = register("village", new TokenType[]{
-            TabletopTokenTypes.PIG,
-            TabletopTokenTypes.RABBIT
+            TokenTypes.PIG,
+            TokenTypes.RABBIT
     });
 
     static void init() {}

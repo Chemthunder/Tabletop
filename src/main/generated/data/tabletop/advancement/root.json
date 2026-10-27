@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "tabletop:gui/advancements/backgrounds/tabletop",
+    "description": "Several fanciful utilities for your favorite games!",
+    "icon": {
+      "count": 1,
+      "id": "tabletop:token"
+    },
+    "show_toast": false,
+    "title": "Tabletop"
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ]
+}
