@@ -54,6 +54,12 @@ public class TokenItem extends Item {
         return Text.literal("Token").formatted(Formatting.YELLOW);
     }
 
+    public ItemStack getDefaultStack() {
+        ItemStack original = super.getDefaultStack();
+        original.set(TabletopComponentTypes.TOKEN_TYPE, TabletopTokenTypes.BLANK);
+        return original;
+    }
+
     public static class Tooltip implements BetterItemTooltipEvent {
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipFlag, Consumer<Text> lines) {
             if (stack.contains(TabletopComponentTypes.TOKEN_TYPE)) {

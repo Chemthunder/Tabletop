@@ -52,8 +52,36 @@ public interface TabletopTokenTypes {
             3,
             List.of(
                     literal("Can attack in diagonal directions up to"),
-                    literal("three blocks, yet is restricted to lateral"),
+                    literal("three tiles, yet is restricted to lateral"),
                     literal("movement.")
+            )
+    );
+
+    TokenType RABBIT = registerMinion(
+            "rabbit",
+            2,
+            List.of(
+                    literal("This Token cannot attack. However, it can leap"),
+                    literal("across surrounding tiles, drawing one Token for each"),
+                    literal("Token they leap over.")
+            )
+    );
+
+    TokenType PUFFERFISH = registerMinion(
+            "pufferfish",
+            2,
+            List.of(
+                    literal("Although this Token can only move in lateral directions,"),
+                    literal("it can attack in all four diagonal tiles at once.")
+            )
+    );
+
+    TokenType IRON_GOLEM = registerMinion(
+            "iron_golem",
+            2,
+            List.of(
+                    literal("This Token can move in all directions, and attack"),
+                    literal("in the three tiles corresponding to a direction.")
             )
     );
 

@@ -28,7 +28,7 @@ public class TabletopModelProvider extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         uploadToken(itemModelGenerator);
-//        uploadPack(itemModelGenerator);
+        uploadPack(itemModelGenerator);
     }
 
     private void uploadToken(ItemModelGenerator generator) {

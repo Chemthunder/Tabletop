@@ -10,7 +10,18 @@ import java.util.Arrays;
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public interface TabletopCardPacks {
+    CardPack CREEPING = register("creeping", new TokenType[]{
+            TabletopTokenTypes.CREEPER,
+            TabletopTokenTypes.ZOMBIE,
+            TabletopTokenTypes.SKELETON
+    });
+
+    CardPack VILLAGE = register("village", new TokenType[]{
+            TabletopTokenTypes.PIG,
+            TabletopTokenTypes.RABBIT
+    });
 
     static void init() {}
 

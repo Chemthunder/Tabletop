@@ -1,0 +1,22 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tabletop:item/card_pack_creeping"
+        },
+        "when": "tabletop:creeping"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tabletop:item/card_pack_village"
+        },
+        "when": "tabletop:village"
+      }
+    ],
+    "property": "tabletop:pack"
+  }
+}
